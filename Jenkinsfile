@@ -44,15 +44,9 @@ pipeline {
         stage('Execute Ansible Playbook') {
             steps {
                 script {
-                    // Replace with the path to your Ansible playbook and inventory file
-                    def ansiblePlaybookPath = 'playbook.yml'
-                    def ansibleInventoryPath = 'hosts'
-
-                    // Define the command to execute the Ansible playbook
-                    def ansibleCmd = "ansible-playbook -i ${ansibleInventoryPath} ${ansiblePlaybookPath}"
-
-                    // Execute the Ansible playbook using sh command.
-                    sh "ansiblePlaybook credentialsId: 'jenkins-eks', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'hosts', playbook: 'playbook.yml'"
+                  sh """ 
+                      ansiblePlaybook credentialsId: 'jenkins-eks', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'hosts', playbook: 'playbook.yaml'
+                  """
                 }
             }
         }
