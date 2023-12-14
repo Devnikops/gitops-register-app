@@ -17,6 +17,7 @@
         mode: '0744'
     
     - name: create tomcat container from Dockerfile
+      command: docker build -t nikhil999999/register-app-pipeline:latest .
       command: docker run -d --name tom_container -p 8080:8080 tomcat:latest
 
     - name: create container from the docker image
