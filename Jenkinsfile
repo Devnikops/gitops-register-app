@@ -44,9 +44,12 @@ pipeline {
         stage('Execute Ansible Playbook') {
             steps {
                 script {
-                  sh """ 
-                      ansiblePlaybook credentialsId: 'jenkins-eks', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'hosts', playbook: 'playbook.yaml'
-                  """
+                  ansiblePlaybook(credentialsId: 'jenkins-eks',
+                                  disableHostKeyChecking: true,
+                                  installation: 'Ansible',
+                                  inventory: 'hosts',
+                                  playbook: 'playbook.yaml'
+                                  )
                 }
             }
         }
