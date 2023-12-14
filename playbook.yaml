@@ -16,9 +16,7 @@
         dest: "/home/ubuntu/workspace/"
         mode: '0744'
     
-    - name: Build the Tomcat container
-      command: docker build -t nikhil999999/register-app-pipeline:latest https://github.com/Devnikops/gitops-register-app/tree/main
-
+  
     - name: Run the Tomcat container
       command: docker run -d --name tom_container -p 8080:8080 tomcat:latest
 
