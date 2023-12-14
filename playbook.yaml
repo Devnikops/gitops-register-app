@@ -17,8 +17,10 @@
         mode: '0744'
     
   
-    - name: Run the Tomcat container
-      command: docker run -d --name tom_container -p 8080:8080 tomcat:latest
+    - name: Run deployment.yml using kubectl
+      ansible.builtin.shell:
+        cmd: kubectl apply -f /home/ubuntu/workspace/deployment.yaml
 
-    - name: Create container from the docker image
-      command: docker run -d --name app_container -p 8081:8080 nikhil999999/register-app-pipeline:latest
+    - name: Run service.yml using kubectl
+      ansible.builtin.shell:
+        cmd: kubectl apply -f /home/ubuntu/workspace/service.yaml
