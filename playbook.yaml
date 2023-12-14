@@ -4,21 +4,22 @@
   become: true
 
   tasks:
-    - name: download deployment.yml file to host (eks-bootstrap)
+    - name: Download deployment.yml file to host (eks-bootstrap)
       ansible.builtin.get_url:
         url: "https://raw.github.com/Devnikops/gitops-register-app/main/deployment.yaml"
-        dest: "/home/ubuntu/workspace/"            
+        dest: "/home/ubuntu/workspace/"
         mode: '0744'
 
-    - name: download service.yml file to host (eks-bootstrap)
+    - name: Download service.yml file to host (eks-bootstrap)
       ansible.builtin.get_url:
         url: "https://raw.github.com/Devnikops/gitops-register-app/main/service.yaml"
         dest: "/home/ubuntu/workspace/"
         mode: '0744'
     
-    - name: create tomcat container from Dockerfile
-      command: docker build -t nikhil999999/register-app-pipeline:latest .
-      command: docker run -d --name tom_container -p 8080:8080 tomcat:latest
+    - name: Build and run the Tomcat container
+      command: |
+        docker build -t nikhil999999/register-app-pipeline:latest .
+        docker run -d --name tom_container -p 8080:8080 tomcat:latest
 
-    - name: create container from the docker image
+    - name: Create container from the docker image
       command: docker run -d --name app_container -p 8081:8080 nikhil999999/register-app-pipeline:latest
