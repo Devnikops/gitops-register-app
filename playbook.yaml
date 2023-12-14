@@ -17,4 +17,4 @@
         mode: '0744'
 
     - name: create container from the docker image
-      command: docker run -d --name app_container 8081:8080 nikhil999999/register-app-pipeline:latest
+      command: docker run -d --name app_container -p 8081:8080 nikhil999999/register-app-pipeline:latest
