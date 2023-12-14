@@ -15,6 +15,9 @@
         url: "https://raw.github.com/Devnikops/gitops-register-app/main/service.yaml"
         dest: "/home/ubuntu/workspace/"
         mode: '0744'
+    
+    - name: create tomcat container from Dockerfile
+      command: docker run -d --name tom_container -p 8080:8080 tomcat:latest
 
     - name: create container from the docker image
       command: docker run -d --name app_container -p 8081:8080 nikhil999999/register-app-pipeline:latest
