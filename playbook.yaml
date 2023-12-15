@@ -15,8 +15,7 @@
         url: "https://raw.github.com/Devnikops/gitops-register-app/main/service.yaml"
         dest: "/home/ubuntu/workspace/"
         mode: '0744'
-    
-  
+      
     - name: Run deployment.yml using kubectl
       ansible.builtin.shell:
         cmd: kubectl apply -f /home/ubuntu/workspace/deployment.yaml
